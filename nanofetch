@@ -1,10 +1,10 @@
 if [[ -f "/bedrock/etc/bedrock-release" ]] && [[ $PATH == */bedrock/cross/* ]]; then
-  echo $(tput setaf 1)":$(tput sgr0)| distro | "$(cat /bedrock/etc/bedrock-release)
+  echo $(tput setaf 8)":$(tput sgr0)| distro | "$(cat /bedrock/etc/bedrock-release)
 else
- echo $(tput setaf 1)":$(tput sgr0)| distro | "$(lsb_release -is)
+ echo $(tput setaf 8)":$(tput sgr0)| distro | "$(lsb_release -is)
 fi
-echo $(tput setaf 2)":$(tput sgr0)| kernel | "$(uname -r)
-echo $(tput setaf 3)":$(tput sgr0)| device | "$(uname -n) $(uname -m)
-echo $(tput setaf 4)":$(tput sgr0)| host   | "$(cat /sys/devices/virtual/dmi/id/product_name)
-echo $(tput setaf 5)":$(tput sgr0)| shell  | "$(basename $SHELL)
-echo $(tput setaf 6)":$(tput sgr0)| wm     | "$(id=$(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}'); xprop -id "${id}" -notype -f _NET_WM_NAME 8t | grep "_NET_WM_NAME = " | cut --delimiter=' ' --fields=3 | cut --delimiter='"' --fields=2)
+echo $(tput setaf 9)":$(tput sgr0)| kernel | "$(uname -r)
+echo $(tput setaf 10)":$(tput sgr0)| device | "$(uname -n) $(uname -m)
+echo $(tput setaf 11)":$(tput sgr0)| host   | "$(cat /sys/devices/virtual/dmi/id/product_name)
+echo $(tput setaf 12)":$(tput sgr0)| shell  | "$(basename $SHELL)
+echo $(tput setaf 13)":$(tput sgr0)| wm     | "$(id=$(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}'); xprop -id "${id}" -notype -f _NET_WM_NAME 8t | grep "_NET_WM_NAME = " | cut --delimiter=' ' --fields=3 | cut --delimiter='"' --fields=2)
