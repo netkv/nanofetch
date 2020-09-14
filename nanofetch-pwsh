@@ -1,6 +1,6 @@
 #!/bin/pwsh
 Write-host ":| system |" $PSVersionTable.OS
-Write-host $(tput setab 10) $(tput setab 2) $(tput sgr0) ":| kernel | "$(uname -r)
+Write-host ":| kernel |" $null$([environment]::OSVersion.Version)
 Write-host $(tput setab 11) $(tput setab 3) $(tput sgr0) ":| device | "$(uname -n) $(uname -m)
 Write-host $(tput setab 12) $(tput setab 4) $(tput sgr0) ":| host   | "$(cat /sys/devices/virtual/dmi/id/product_name)
 Write-host $(tput setab 13) $(tput setab 5) $(tput sgr0) ":| shell  | "$(basename $SHELL)
