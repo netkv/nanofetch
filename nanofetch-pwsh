@@ -1,7 +1,7 @@
 #!/bin/pwsh
 Write-host ":| system |" $PSVersionTable.OS
 Write-host ":| kernel |" $null$([environment]::OSVersion.Version)
-Write-host $(tput setab 11) $(tput setab 3) $(tput sgr0) ":| device | "$(uname -n) $(uname -m)
+Write-host ":| device |" [System.Net.Dns]::GetHostName()
 Write-host $(tput setab 12) $(tput setab 4) $(tput sgr0) ":| host   | "$(cat /sys/devices/virtual/dmi/id/product_name)
 Write-host $(tput setab 13) $(tput setab 5) $(tput sgr0) ":| shell  | "$(basename $SHELL)
 Write-host $(tput setab 14) $(tput setab 6) $(tput sgr0) ":| wm     | "$(id=$(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}'); xprop -id "${id}" -notype -f _NET_WM_NAME 8t | grep "_NET_WM_NAME = " | cut --delimiter=' ' --fields=3 | cut --delimiter='"' --fields=2)
