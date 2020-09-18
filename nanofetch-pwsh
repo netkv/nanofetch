@@ -6,4 +6,4 @@ Write-host $(tput setab 12) $(tput setab 4) $(tput sgr0) ":| host   | "$(cat /sy
 Write-host ":| shell  | "powershell $PSVersionTable.PSVersion
 Write-host $(tput setab 14) $(tput setab 6) $(tput sgr0) ":| wm     | "
 if ($(($PSVersionTable.OS.Split(" "))[0]) -eq "Linux") {Write-host ":| gtk    | "$(grep 'gtk-theme-name' $HOME/.config/gtk-3.0/settings.ini | cut -d' ' -f 3)}
-Write-host $(tput setab 8) $(tput setab 0) $(tput sgr0) ":| modules| "$((Get-Module -All | Measure-Object -line).Lines)
+Write-host ":| modules| "$((Get-Module -All | Measure-Object -line).Lines)
