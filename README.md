@@ -11,3 +11,7 @@ __Instalation:__
 
 donwload "**nanofetch**" file and put it into **/usr/local/bin** and make it executable using gui or chmod
 
+__Powershell?__
+
+coming soon
+
