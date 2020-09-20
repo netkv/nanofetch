@@ -2,8 +2,8 @@
 Write-host ":| system |" $(($PSVersionTable.OS.Split(" "))[0])
 Write-host ":| kernel |" $null$([environment]::OSVersion.Version)
 Write-host ":| device |" $([System.Net.Dns]::GetHostName())
-Write-host $(tput setab 12) $(tput setab 4) $(tput sgr0) ":| host   | "$(cat /sys/devices/virtual/dmi/id/product_name)
+if ($($PSVersionTable.Platform) -eq "Unix") {Write-host $(tput setab 12) $(tput setab 4) $(tput sgr0) ":| host   | "$(cat /sys/devices/virtual/dmi/id/product_name)}
 Write-host ":| shell  | "powershell $PSVersionTable.PSVersion
 Write-host $(tput setab 14) $(tput setab 6) $(tput sgr0) ":| wm     | "
-if ($($PSversiontable.Platform -eq "Unix") {Write-host ":| gtk    | "$(grep 'gtk-theme-name' $HOME/.config/gtk-3.0/settings.ini | cut -d' ' -f 3)}
+if ($($PSVersionTable.Platform) -eq "Unix") {Write-host ":| gtk    | "$(grep 'gtk-theme-name' $HOME/.config/gtk-3.0/settings.ini | cut -d' ' -f 3)}
 Write-host ":| modules| "$((Get-Module -All | Measure-Object -line).Lines)
