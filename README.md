@@ -1,5 +1,5 @@
 # nanofetch
-lightweight fetch made in bash
+lightweight fetch made in shell
 
 *and coded in gnu nano*
 
