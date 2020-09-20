@@ -13,5 +13,5 @@ donwload "**nanofetch**" file and put it into **/usr/local/bin** and make it exe
 
 __Powershell?__
 
-coming soon
+WIP
 
