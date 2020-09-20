@@ -9,7 +9,7 @@ curl -s https://raw.githubusercontent.com/Pan00Pernicek/nanofetch/master/nanofet
 
 __Instalation:__
 
-donwload "**nanofetch**" file and put it into **/usr/local/bin** and make it executable using gui or chmod +x
+download "**nanofetch**" file and put it into **/usr/local/bin** and make it executable using gui or chmod +x
 
 __Powershell?__
 
