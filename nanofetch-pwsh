@@ -1,5 +1,5 @@
 #!/bin/pwsh
-Write-host ":| system |" $(($PSVersionTable.OS.Split(" "))[0])
+Write-Host " " -b red -nonewline; Write-Host " " -b darkred -nonewline; Write-host ":| system |" $(($PSVersionTable.OS.Split(" "))[0])
 Write-host ":| kernel |" $null$([environment]::OSVersion.Version)
 Write-host ":| device |" $([System.Net.Dns]::GetHostName())
 if ($($PSVersionTable.Platform) -eq "Unix") {Write-host ":| host   |" $(cat /sys/devices/virtual/dmi/id/product_name)}
