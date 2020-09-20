@@ -13,5 +13,5 @@ download "**nanofetch**" file and put it into **/usr/local/bin** and make it exe
 
 __Powershell?__
 
-WIP
+download and run "nanofetch-pwsh" file (experimental)
 
