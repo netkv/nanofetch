@@ -17,5 +17,5 @@ download and run "nanofetch-pwsh" file (experimental)
 
 __other?__
 
-maybe
+fish script maybe
 
