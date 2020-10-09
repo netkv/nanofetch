@@ -1,4 +1,4 @@
-#!/bin/fish
+#!/usr/bin/env fish
 if -f test "/bedrock/etc/bedrock-release"
   echo $(tput setab 9) $(tput setab 1) $(tput sgr0) ":| distro | "$(cat /bedrock/etc/bedrock-release) 
 else
