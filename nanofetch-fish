@@ -1,13 +1,13 @@
 #!/bin/fish
-if [[ -f "/bedrock/etc/bedrock-release" ]] && [[ $PATH == */bedrock/cross/* ]]; then
-  echo $(tput setab 9) $(tput setab 1) $(tput sgr0) ":| distro | "$(cat /bedrock/etc/bedrock-release)
+if -f test "/bedrock/etc/bedrock-release"
+  echo $(tput setab 9) $(tput setab 1) $(tput sgr0) ":| distro | "$(cat /bedrock/etc/bedrock-release) 
 else
- if [[ -f "/etc/os-release" ]]; then
+ if test -f "/etc/os-release"
   echo $(tput setab 9) $(tput setab 1) $(tput sgr0) ":| distro | "$(cat /etc/os-release | awk -F= '{print $2;exit}'| awk -F\" '{print $1,$2}')
  else
   echo $(tput setab 9) $(tput setab 1) $(tput sgr0) ":| distro | "$(uname -o)
- fi
-fi
+ end
+end
 echo (tput setab 10) (tput setab 2) (tput sgr0) ":| kernel | "(uname -r)
 echo (tput setab 11) (tput setab 3) (tput sgr0) ":| device | "(uname -n) $(uname -m)
 echo (tput setab 12) (tput setab 4) (tput sgr0) ":| host   | "(cat /sys/devices/virtual/dmi/id/product_name)
