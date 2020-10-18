@@ -15,7 +15,7 @@ else
 	prin 1 os "$(uname -o)"
 fi
 
-prin 2 kernel "$(uname -r)"
+prin 2 kernel "$(uname -r)" "$(systemctl --version | head -1)"
 prin 3 device "$(uname -n) $(uname -m)"
 
 read -r dev < /sys/devices/virtual/dmi/id/product_name
