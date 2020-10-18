@@ -1,4 +1,6 @@
 # nanofetch
+very sane 
+
 lightweight fetch made in shell
 
 *and coded in gnu nano*
