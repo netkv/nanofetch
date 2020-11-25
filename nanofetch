@@ -6,7 +6,7 @@ prin() {
 }
 
 if [ -f /bedrock/etc/bedrock-release ]; then
-	read -r distro < /bedrock/etc/bedrock-release
+	distro=$(brl version)
 	prin 1 distro "$distro"
 elif [ -f /etc/os-release ]; then
 	. /etc/os-release
