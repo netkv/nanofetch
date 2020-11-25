@@ -16,8 +16,3 @@ download "**nanofetch**" file and put it into **/usr/local/bin** and make it exe
 __Powershell?__
 
 download and run "nanofetch-pwsh" file (experimental)
-
-__other?__
-
-fish script maybe
-
