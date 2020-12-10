@@ -1,4 +1,4 @@
-#!/bin/pwsh
+#!/usr/bin/env pwsh
 Write-Host " " -b red -nonewline; Write-Host " " -b darkred -nonewline; Write-host " :| system |" $(($PSVersionTable.OS.Split(" "))[0])
 Write-Host " " -b green -nonewline; Write-Host " " -b darkgreen -nonewline; Write-host " :| kernel |" $null$([environment]::OSVersion.Version)
 Write-Host " " -b yellow -nonewline; Write-Host " " -b darkyellow -nonewline; Write-host " :| device |" $([System.Net.Dns]::GetHostName())
