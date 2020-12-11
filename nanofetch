@@ -28,6 +28,10 @@ prin 6 wm "$(xprop -id "${id}" -notype -f _NET_WM_NAME 8t | grep "_NET_WM_NAME =
 prin 7 gtk "$(grep gtk-theme-name "${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini" | cut -d= -f2 )"
 if [ -f /bedrock/etc/bedrock-release ]; then
  prin 0 pkgs "$(/bedrock/libexec/pmm xbps pmm-query -l | wc -l) (pmm)"
+elif [ -f /usr/bin/dpkg ]; then
+ prin 0  pkgs "$(dpkg-query -l | wc -l) (dpkg)"
+elif [ -f /usr/bin/xbps-query ]; then
+ prin 0 pkgs "$(xbps-query -l | wc -l) (xbps)"
 else
  prin 0 bins "$(find /usr/bin | wc -l)"
 fi
