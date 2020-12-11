@@ -26,4 +26,8 @@ id=$(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}');
 prin 6 wm "$(xprop -id "${id}" -notype -f _NET_WM_NAME 8t | grep "_NET_WM_NAME = " \
 	| cut -d' ' -f3 | cut -d\" -f2)"
 prin 7 gtk "$(grep gtk-theme-name "${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini" | cut -d= -f2 )"
-prin 0 bins "$(find /usr/bin | wc -l)"
+if [ -f /bedrock/etc/bedrock-release ]; then
+ prin 0 pkgs "$(/bedrock/libexec/pmm xbps pmm-query -l) (pmm)"
+else
+ prin 0 bins "$(find /usr/bin | wc -l)"
+fi
