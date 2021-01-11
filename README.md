@@ -16,3 +16,9 @@ download "**nanofetch**" file and put it into **/usr/local/bin** and make it exe
 __Powershell?__
 
 download and run "nanofetch-pwsh" file (experimental)
+
+__Options__
+
+ use-pmm
+ 
+ - bedrock linux users may want to get cleaner package info output using this
