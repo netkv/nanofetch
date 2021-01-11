@@ -1,4 +1,5 @@
 #!/bin/env bash
+#old version - update
 if [ -f "/bedrock/etc/bedrock-release" ] && [ $PATH == */bedrock/cross/* ]; then
   echo $(tput setab 9) $(tput setab 1) $(tput sgr0) ":| distro | "$(cat /bedrock/etc/bedrock-release)
 else
