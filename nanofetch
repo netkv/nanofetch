@@ -18,7 +18,7 @@ else
 	prin 1 os "$(uname -o)"
 fi
 
-prin 2 kernel "$(uname -r)
+prin 2 kernel "$(uname -r)"
 prin 3 device "$(uname -n) $(uname -m)"
 
 if [ -z $android ]; then
