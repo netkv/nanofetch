@@ -1,11 +1,14 @@
 #!/bin/sh
 exec 2>/dev/null
-
 prin() {
 	printf "\033[10%sm \033[4%sm \033[0m :| %-6s | %s\n" "$1" "$1" "$2" "$3"
 }
-
-if [ -f /bedrock/etc/bedrock-release ]; then
+if command -v getprop > /dev/null; then
+ android=yes
+ dev="$(getprop net.hostname)"
+ distro="Android $(getprop ro.build.version.release)"
+ prin 1 distro "$distro"
+elif [ -f /bedrock/etc/bedrock-release ]; then
 	distro=$(brl version)
 	prin 1 distro "$distro"
 elif [ -f /etc/os-release ]; then
@@ -18,7 +21,9 @@ fi
 prin 2 kernel "$(uname -r) $(systemctl --version | head -1)"
 prin 3 device "$(uname -n) $(uname -m)"
 
-read -r dev < /sys/devices/virtual/dmi/id/product_name
+if [ -z $android ]; then
+ read -r dev < /sys/devices/virtual/dmi/id/product_name
+fi
 prin 4 host "$dev"
 prin 5 shell "${SHELL##*/}"
 
