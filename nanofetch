@@ -74,6 +74,6 @@ do
    packages="$(ls /usr/bin | wc -l)"
    manager="/usr/bin";;
  esac
- total="$total $pm: $packages"
+ total="$total$pm: $packages, "
 done
 prin 0 pkgs "$total"
