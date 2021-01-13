@@ -64,7 +64,8 @@ do
   pkg|emerge) packages="$(qlist -I | wc -l)";;
   cave) packages="$(cave show installed-slots | wc -l)";;
   xbps-query) packages="$(xbps-query -l | wc -l)";pm=xbps;;
-  nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
+  #nix-env) packages="$(nix-store -q --requisites /run/current-system/sw | wc -l)";;
+  nix-env) packages="$(nix-env -q | wc -l)";;
   apk) packages="$(apk list --installed | wc -l)";;
   pmm) packages="$(/bedrock/libexec/pmm pacman pmm -Q 2>/dev/null | wc -l )";;
   eopkg) packages="$(eopkg li | wc -l)";;
