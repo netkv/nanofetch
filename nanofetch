@@ -7,7 +7,7 @@ esc() {
 printf '%b\n' $(esc 1 34)$USER$(esc 1 33)"@"$(esc 1 32)$(hostname)
 
 prin() {
-	printf "\033[10%sm \033[4%sm \033[0m  %-6s %s\n" "$1" "$1" "$2" "$3"
+	printf "\033[10%sm \033[4%sm \033[0m %-6s %s\n" "$1" "$1" "$2" "$3"
 }
 
 if [ -z $1 ];then
@@ -72,7 +72,7 @@ do
   /usr/sbin/slackpkg) packages="$(ls /var/log/packages | wc -l)";;
   *)
    packages="$(ls /usr/bin | wc -l)"
-   manager="/usr/bin";;
+   manager="unknown";;
  esac
  total="$total$pm: $packages, "
 done
