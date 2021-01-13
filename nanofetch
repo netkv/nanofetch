@@ -1,5 +1,10 @@
 #!/bin/sh
-if ! [ $1 = debug ]; then
+if [ -z $1 ];then
+ cmd=null
+else
+ cmd=$1
+fi
+if ! [ $cmd = debug ]; then
  exec 2>/dev/null
 fi
 esc() {
@@ -10,12 +15,6 @@ printf '%b\n' $(esc 1 34)$USER$(esc 1 33)"@"$(esc 1 32)$(hostname)
 prin() {
 	printf "\033[10%sm \033[4%sm \033[0m %-6s %s\n" "$1" "$1" "$2" "$3"
 }
-
-if [ -z $1 ];then
- cmd=null
-else
- cmd=$1
-fi
 
 if command -v getprop > /dev/null; then
  android=yes
