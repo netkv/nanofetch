@@ -3,11 +3,7 @@ very sane
 
 lightweight fetch made in shell
 
-*and coded in gnu nano*
-
-__Run without installing:__
-
-```curl -s https://raw.githubusercontent.com/Pan00Pernicek/nanofetch/master/nanofetch | sh```
+~~*and coded in gnu nano*~~
 
 __Installation:__
 
@@ -17,12 +13,16 @@ __Powershell?__
 
 download and run "nanofetch-pwsh" file (experimental)
 
-__Options__ (posix)
+__Execline?__ 
 
- use-pmm
+download and run "nanofetch-execline" gile
+
+__Options__ 
+
+ use-pmm (posix shell and execline versions)
  
  - bedrock linux users may want to get cleaner package info output using this
 
- debug
+ debug (posix shell version)
  
  - dont hide error messages
