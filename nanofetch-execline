@@ -1,3 +1,4 @@
+#!/usr/bin/execlineb
 importas 1 1
 importas SHELL SHELL
 importas dewm XDG_CURRENT_DESKTOP
