@@ -61,7 +61,8 @@ do
   rpm) packages="$(rpm -qa | wc -l)";;
   pacman) packages="$(pacman -Q | wc -l)";;
   kiss) packages="$(kiss list | wc -l)";;
-  pkg|emerge) packages="$(qlist -I | wc -l)";;
+  emerge) packages="$(qlist -I | wc -l)";;
+  pkg) packages="$(pkg list-installed | wc -l)";;
   cave) packages="$(cave show installed-slots | wc -l)";;
   xbps-query) packages="$(xbps-query -l | wc -l)";pm=xbps;;
   nix-env) packages="$(nix-env -q | wc -l)";;
