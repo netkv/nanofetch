@@ -15,7 +15,7 @@ download and run "nanofetch-pwsh" file (experimental)
 
 __Execline?__ 
 
-download and run "nanofetch-execline" gile
+download and run "nanofetch-execline" file
 
 __Options__ 
 
