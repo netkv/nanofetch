@@ -1,7 +1,7 @@
 #!/usr/bin/execlineb
 importas 1 1
 importas SHELL SHELL
-importas dewm XDG_CURRENT_DESKTOP
+importas dewmtmp XDG_CURRENT_DESKTOP
 importas home HOME
 importas user USER
 
@@ -11,6 +11,7 @@ backtick arch { uname -m }
 backtick host { cat /sys/devices/virtual/dmi/id/product_name }
 backtick shell { basename $SHELL }
 backtick gtk { pipeline { grep gtk-theme-name ${home}/.config/gtk-3.0/settings.ini } cut -d= -f2 }
+backtick dewm { ifthenelse { test -z $dewmtmp } { echo unknown } { echo $dewmtmp } }
 
 importas os os
 importas kernel kernel
@@ -18,6 +19,7 @@ importas hostname hostname
 importas arch arch
 importas host host
 importas shell shell
+importas dewm dewm
 importas gtk gtk
 
 foreground { echo "\033[1;34m${user}\033[1;33m@\033[1;32m${hostname}\033[0;0m" }
@@ -43,20 +45,20 @@ foreground { echo -ne "\033[0;40m \033[0;100m \033[0;0m pkg    " }
 
 ifelse {  redirfd -w 2 /dev/null test  $1 = use-pmm } { 
 	foreground { redirfd -w 2 /dev/null backtick pkgs { pipeline { /bedrock/libexec/pmm pacman pmm -Q } wc -l } importas pkgs pkgs echo "pmm: ${pkgs} " }
-} backtick -E pkgs {
-	background { if  { redirfd -w 1 /dev/null command -v xbps-query } backtick pkgs { pipeline { xbps-query -l } wc -l } importas pkgs pkgs echo -n "xbps: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v rpm } backtick pkgs { pipeline { rpm -qa } wc -l } importas pkgs pkgs echo -n "rpm: ${pkgs} " }
-	background { if  { redirfd -w 1 /dev/null command -v brew } backtick pkgs { pipeline { brew list --formula } wc -l } importas pkgs pkgs echo -n "brew: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v port } backtick pkgs { pipeline { port installed } wc -l } importas pkgs pkgs echo -n "port: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v pacman } backtick pkgs { pipeline { pacman -Q } wc -l } importas pkgs pkgs echo -n "pacman: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v kiss } backtick pkgs { pipeline { kiss list } wc -l } importas pkgs pkgs echo -n "kiss: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v dpkg } backtick pkgs { pipeline { pipeline { dpkg --get-selections } grep -v deinstall } wc -l } importas pkgs pkgs echo -n "dpkg: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v emerge } backtick pkgs { pipeline { qlist -I } wc -l } importas pkgs pkgs echo -n "emerge: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v pkg } backtick pkgs { pipeline { pkg list-intalled } wc -l } importas pkgs pkgs echo -n "pkg: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v cave } backtick pkgs { pipeline { cave show installed-slots } wc -l } importas pkgs pkgs echo -n "cave: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v nix-env } backtick pkgs { pipeline { nix-env -q } wc -l } importas pkgs pkgs echo -n "nix: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v apk } backtick pkgs { pipeline { apk list --installed } wc -l } importas pkgs pkgs echo -n "apk: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v eopkg } backtick pkgs { pipeline { eopkg li } wc -l } importas pkgs pkgs echo -n "eopkg: ${pkgs}, " }
-	background { if  { redirfd -w 1 /dev/null command -v /usr/sbin/slackpkg } backtick pkgs { pipeline { ls /var/log/packages } wc -l } importas pkgs pkgs echo -n "slackpkg: ${pkgs}, " }
+} backtick -E pkgs { redirfd -w 2 /dev/null
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which xbps-query } backtick pkgs { pipeline { xbps-query -l } wc -l } importas pkgs pkgs echo -n "xbps: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which rpm } backtick pkgs { pipeline { rpm -qa } wc -l } importas pkgs pkgs echo -n "rpm: ${pkgs} " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which brew } backtick pkgs { pipeline { brew list --formula } wc -l } importas pkgs pkgs echo -n "brew: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which port } backtick pkgs { pipeline { port installed } wc -l } importas pkgs pkgs echo -n "port: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which pacman } backtick pkgs { pipeline { pacman -Q } wc -l } importas pkgs pkgs echo -n "pacman: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which kiss } backtick pkgs { pipeline { kiss list } wc -l } importas pkgs pkgs echo -n "kiss: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which dpkg } backtick pkgs { pipeline { pipeline { dpkg --get-selections } grep -v deinstall } wc -l } importas pkgs pkgs echo -n "dpkg: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which emerge } backtick pkgs { pipeline { qlist -I } wc -l } importas pkgs pkgs echo -n "emerge: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which pkg } backtick pkgs { pipeline { pkg list-intalled } wc -l } importas pkgs pkgs echo -n "pkg: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which cave } backtick pkgs { pipeline { cave show installed-slots } wc -l } importas pkgs pkgs echo -n "cave: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which nix-env } backtick pkgs { pipeline { nix-env -q } wc -l } importas pkgs pkgs echo -n "nix: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which apk } backtick pkgs { pipeline { apk list --installed } wc -l } importas pkgs pkgs echo -n "apk: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which eopkg } backtick pkgs { pipeline { eopkg li } wc -l } importas pkgs pkgs echo -n "eopkg: ${pkgs}, " }
+	background { if  { redirfd -w 2 /dev/null redirfd -w 1 /dev/null which /usr/sbin/slackpkg } backtick pkgs { pipeline { ls /var/log/packages } wc -l } importas pkgs pkgs echo -n "slackpkg: ${pkgs}, " }
 }
 foreground { echo $pkgs }
